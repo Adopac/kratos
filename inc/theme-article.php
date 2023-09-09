@@ -112,7 +112,7 @@ function default_attachment_display_settings()
     update_option('image_default_link_type', 'file');
 }
 
-// 文章特色图片
+// 文章随机图片
 function post_thumbnail()
 {
     global $post;
@@ -124,7 +124,10 @@ function post_thumbnail()
     if (has_post_thumbnail()) {
         echo '<img src="' . $img_url . '" />';
     } else {
-        $content = $post->post_content;
+        $random=mt_rand(1,155);
+        $img_url_random=get_random_image_url();
+        echo '<img src="' . $img_url_random . '" />';
+/*      $content = $post->post_content;
         $img_preg = "/<img (.*?)src=\"(.+?)\".*?>/";
         preg_match($img_preg, $content, $img_src);
         $img_count = count($img_src) - 1;
@@ -135,10 +138,9 @@ function post_thumbnail()
             echo '<img src="' . $img_val . '" />';
         } else {
             echo '<img src="' . kratos_option('g_postthumbnail', ASSET_PATH . '/assets/img/default.jpg') . '" />';
-        }
+        } */
     }
 }
-
 // 文章列表分页
 function pagelist($range = 5)
 {
