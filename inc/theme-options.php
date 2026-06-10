@@ -4,7 +4,7 @@
  * 主题选项
  * @author Seaton Jiang <hi@seatonjiang.com>
  * @license GPL-3.0 License
- * @version 2023.08.25
+ * @version 2025.02.08
  */
 
 defined('ABSPATH') || exit;
@@ -50,7 +50,7 @@ CSF::createOptions($prefix, array(
     'admin_bar_menu_icon' => 'dashicons-admin-generic',
     'framework_title' => '主题设置<small style="margin-left:10px">Kratos v' . THEME_VERSION . '</small>',
     'theme' => 'light',
-    'footer_credit' => '感谢使用 <a target="_blank" href="https://github.com/seatonjiang/kratos">Kratos</a> 主题开始创作，欢迎加入交流群：<a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=_7pE5U4pbq4j2xeu_cyZqvasEd_i9wTf">618958939</a>、<a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=8Okzvj3TP67642FTRvC1mKT7f8L4NOrk">839687348</a>、<a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=b37-78PbXYvTdoUZq9rW-nEF6CEl4wBv">852844975</a>',
+    'footer_credit' => '感谢使用 <a target="_blank" href="https://github.com/seatonjiang/kratos">Kratos</a> 主题进行创作，欢迎加入主题交流群：<a target="_blank" href="https://qm.qq.com/q/yNBa2CSHd0">315990636</a>',
 ));
 
 CSF::createSection($prefix, array(
@@ -147,6 +147,13 @@ CSF::createSection($prefix, array(
             'title' => __('Gutenberg 编辑器', 'kratos'),
             'subtitle' => __('启用/禁用 Gutenberg 编辑器', 'kratos'),
             'default' => false,
+        ),
+        array(
+            'id' => 'g_page_lightgallery',
+            'type' => 'switcher',
+            'title' => __('页面图片灯箱', 'kratos'),
+            'subtitle' => __('启用/禁用页面图片灯箱功能', 'kratos'),
+            'default' => true,
         ),
         array(
             'id' => 'g_excerpt_length',
@@ -273,7 +280,7 @@ CSF::createSection($prefix, array(
         array(
             'id' => 'g_background',
             'type' => 'color',
-            'default' => '#f5f5f5',
+            'default' => '#f3f4f6',
             'title' =>  __('全站背景颜色', 'kratos'),
             'subtitle' => __('全站页面的背景颜色', 'kratos'),
         ),
@@ -287,7 +294,7 @@ CSF::createSection($prefix, array(
         array(
             'id' => 'g_chrome',
             'type' => 'color',
-            'default' => '#282a2c',
+            'default' => '#6366f1',
             'title' =>  __('Chrome 导航栏颜色', 'kratos'),
             'subtitle' => __('移动端 Chrome 浏览器导航栏颜色', 'kratos'),
         ),
@@ -682,7 +689,7 @@ CSF::createSection($prefix, array(
             'default' => true,
         ),
         array(
-            'id' => 'g_lightgallery',
+            'id' => 'g_article_lightgallery',
             'type' => 'switcher',
             'title' => __('文章图片灯箱', 'kratos'),
             'subtitle' => __('启用/禁用文章图片灯箱功能', 'kratos'),
@@ -901,7 +908,7 @@ CSF::createSection($prefix, array(
         array(
             'id' => 'top_color',
             'type' => 'color',
-            'default' => '#24292e',
+            'default' => '#1e1b4b',
             'title' =>  __('颜色导航', 'kratos'),
         ),
     ),
@@ -1192,7 +1199,7 @@ CSF::createSection($prefix, array(
         ),
         array(
             'type' => 'content',
-            'content' => '<ul style="margin: 0 auto;"> <li>' . __('PHP 版本：', 'kratos') . PHP_VERSION . '</li> <li>' . __('Kratos 版本：', 'kratos') . THEME_VERSION . '</li> <li>' . __('WordPress 版本：', 'kratos') . $wp_version . '</li> <li>' . __('User Agent 信息：', 'kratos') . $_SERVER['HTTP_USER_AGENT'] . '</li> </ul>',
+            'content' => '<ul style="margin: 0 auto;"> <li>' . __('PHP 版本：', 'kratos') . PHP_VERSION . '</li> <li>' . __('Kratos 版本：', 'kratos') . THEME_VERSION . '</li> <li>' . __('WordPress 版本：', 'kratos') . $wp_version . '</li> <li>' . __('User Agent 信息：', 'kratos') . '<span id="user-agent"></span></li> </ul><script>document.getElementById("user-agent").textContent = navigator.userAgent;</script>',
         ),
 
         array(
@@ -1210,22 +1217,6 @@ CSF::createSection($prefix, array(
         array(
             'type' => 'content',
             'content' => __('主题源码使用 <a href="https://github.com/seatonjiang/kratos/blob/main/LICENSE" target="_blank">GPL-3.0 协议</a> 进行许可，说明文档使用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a> 进行许可。', 'kratos'),
-        ),
-        array(
-            'type' => 'subheading',
-            'content' => __('讨论交流', 'kratos'),
-        ),
-        array(
-            'type' => 'content',
-            'content' => '<div style="max-width:800px;"><img style="width: 70%;height: auto;" src="' . get_template_directory_uri() . '/assets/img/options/discuss.png"></div>',
-        ),
-        array(
-            'type' => 'subheading',
-            'content' => __('打赏支持', 'kratos'),
-        ),
-        array(
-            'type' => 'content',
-            'content' => '如果您有用到我开发维护的项目，请考虑支持一下我的工作，让我可以持续的维护它们，您可在爱发电（<a href="https://afdian.net/a/seatonjiang" target="_blank">https://afdian.net/a/seatonjiang</a>）中进行打赏，谢谢！',
-        ),
+        )
     ),
 ));

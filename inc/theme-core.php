@@ -4,7 +4,7 @@
  * 核心函数
  * @author Seaton Jiang <hi@seatonjiang.com>
  * @license GPL-3.0 License
- * @version 2023.04.04
+ * @version 2024.08.05
  */
 
 use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
@@ -43,7 +43,7 @@ function theme_autoload()
         wp_enqueue_style('bootstrap', ASSET_PATH . '/assets/css/bootstrap.min.css', array(), '4.5.0');
         wp_enqueue_style('kicon', ASSET_PATH . '/assets/css/iconfont.min.css', array(), THEME_VERSION);
         wp_enqueue_style('layer', ASSET_PATH . '/assets/css/layer.min.css', array(), '3.1.1');
-        if (kratos_option('g_lightgallery', true)) {
+        if ((kratos_option('g_article_lightgallery', true) && is_single()) || (kratos_option('g_page_lightgallery', true) && is_page())) {
             wp_enqueue_script('lightgallery', ASSET_PATH . '/assets/js/lightgallery.min.js', array(), '1.4.0', true);
             wp_enqueue_style('lightgallery', ASSET_PATH . '/assets/css/lightgallery.min.css', array(), '1.4.0');
         }
@@ -81,10 +81,10 @@ function theme_autoload()
         wp_add_inline_style('kratos', "
         @media screen and (min-width: 992px) {
             .k-nav .navbar-brand h1 {
-                color: " . kratos_option('g_nav', '#ffffff') . ";
+                color: var(--k-nav-text, " . kratos_option('g_nav', '#ffffff') . ");
             }
             .k-nav .navbar-nav > li.nav-item > a {
-                color: " . kratos_option('g_nav', '#ffffff') . ";
+                color: var(--k-nav-text, " . kratos_option('g_nav', '#ffffff') . ");
             }
         }
         ");
@@ -106,7 +106,6 @@ function theme_autoload()
             'directory' => ASSET_PATH,
             'alipay' => kratos_option('g_donate_fieldset')['g_donate_alipay'] ?? '',
             'wechat' => kratos_option('g_donate_fieldset')['g_donate_wechat'] ?? '',
-            'lightgallery' => kratos_option('g_lightgallery', true),
             'repeat' => __('您已经赞过了', 'kratos'),
             'thanks' => __('感谢您的支持', 'kratos'),
             'donate' => __('打赏作者', 'kratos'),
@@ -225,7 +224,7 @@ if (kratos_option('g_replace_gravatar_url_fieldset')['g_replace_gravatar_url'] ?
 
 // 主题更新检测
 $myUpdateChecker = PucFactory::buildUpdateChecker(
-    'https://cdn.jsdelivr.net/gh/seatonjiang/kratos/inc/update-checker/update.json',
+    'https://dl.seatonjiang.com/kratos/themes/info.json',
     get_template_directory() . '/functions.php',
     'Kratos'
 );
