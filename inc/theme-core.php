@@ -81,10 +81,10 @@ function theme_autoload()
         wp_add_inline_style('kratos', "
         @media screen and (min-width: 992px) {
             .k-nav .navbar-brand h1 {
-                color: " . kratos_option('g_nav', '#ffffff') . ";
+                color: var(--k-nav-text, " . kratos_option('g_nav', '#ffffff') . ");
             }
             .k-nav .navbar-nav > li.nav-item > a {
-                color: " . kratos_option('g_nav', '#ffffff') . ";
+                color: var(--k-nav-text, " . kratos_option('g_nav', '#ffffff') . ");
             }
         }
         ");

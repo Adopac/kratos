@@ -280,7 +280,7 @@ CSF::createSection($prefix, array(
         array(
             'id' => 'g_background',
             'type' => 'color',
-            'default' => '#f5f5f5',
+            'default' => '#f3f4f6',
             'title' =>  __('全站背景颜色', 'kratos'),
             'subtitle' => __('全站页面的背景颜色', 'kratos'),
         ),
@@ -294,7 +294,7 @@ CSF::createSection($prefix, array(
         array(
             'id' => 'g_chrome',
             'type' => 'color',
-            'default' => '#282a2c',
+            'default' => '#6366f1',
             'title' =>  __('Chrome 导航栏颜色', 'kratos'),
             'subtitle' => __('移动端 Chrome 浏览器导航栏颜色', 'kratos'),
         ),
@@ -908,7 +908,7 @@ CSF::createSection($prefix, array(
         array(
             'id' => 'top_color',
             'type' => 'color',
-            'default' => '#24292e',
+            'default' => '#1e1b4b',
             'title' =>  __('颜色导航', 'kratos'),
         ),
     ),

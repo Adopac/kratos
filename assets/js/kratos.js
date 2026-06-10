@@ -436,6 +436,26 @@
       }
     };
 
+  var themeToggleConfig = function () {
+    var root = document.documentElement;
+    function current() {
+      return (
+        root.getAttribute("data-theme") ||
+        (window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light")
+      );
+    }
+    $(".k-theme-toggle").on("click", function () {
+      var next = current() === "dark" ? "light" : "dark";
+      root.setAttribute("data-theme", next);
+      try {
+        localStorage.setItem("kratos-theme", next);
+      } catch (e) {}
+    });
+  };
+
   document.addEventListener(
     "DOMContentLoaded",
     function () {
@@ -450,6 +470,7 @@
       donateConfig();
       consoleConfig();
       lightGalleryConfig();
+      themeToggleConfig();
     }
   );
 })(
